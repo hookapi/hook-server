@@ -60,8 +60,13 @@ app.use(function (err, req, res, next) {
 });
 
 app.all('*',function(req,res,next){
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
+    res.header("Access-Control-Allow-Credentials", config.opt.responseSettings.AccessControlAllowCredentials);
+    res.header("Access-Control-Allow-Origin", (req.headers.origin) ? req.headers.origin : config.opt.responseSettings.AccessControlAllowHeaders);
+    res.header("Access-Control-Allow-Headers", (req.headers['access-control-request-headers']) ? req.headers['access-control-request-headers'] : config.opt.responseSettings.AccessControlAllowHeaders);
+    res.header("Access-Control-Allow-Methods", (req.headers['access-control-request-method']) ? req.headers['access-control-request-method'] : config.opt.responseSettings.AccessControlAllowMethods);
+
+    if (req.method === 'OPTIONS') return res.send(200);
 
   if (!path.extname(req.url)){
     var ip = req.connection.remoteAddress || req.socket.remoteAddress;

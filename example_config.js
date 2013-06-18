@@ -27,6 +27,13 @@ exports.opt = {
   ssl_key_file:  '',
   node_base_folder: '',
 
+  responseSettings: {
+      AccessControlAllowOrigin: "*",
+      AccessControlAllowHeaders: "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+      AccessControlAllowMethods: "POST,GET,PUT,DELETE",
+      AccessControlAllowCredentials: true
+  },
+
   redis: {
     host: '127.0.0.1',
     port: 6379,
