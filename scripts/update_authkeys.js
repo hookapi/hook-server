@@ -3,7 +3,7 @@
 var fs = require('fs'),
   config = require('../config.js').opt;
 
-var stream = fs.createWriteStream(config.git_home_dir + '/.ssh/authorized_keys', {
+var stream = fs.createWriteStream(config.app_dir + '/../.ssh/authorized_keys', {
   'flags': 'a+',
   'encoding': 'ascii',
   'mode': '0644'
