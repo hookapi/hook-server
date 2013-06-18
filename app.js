@@ -186,6 +186,7 @@ app.post('/user', user.post);
 /*
  * Log in 
  * @Public: false, only with authentication
+ * @TODO: Update this with the correct info
  * @raw: curl -X POST -u "testuser:123" -d "password=test&rsakey=1234567" http://localhost:4001/user/login
  */
 
