@@ -1,17 +1,27 @@
+
 #!/bin/bash
 # post-commit hook to create git file directory for node subdomain
 
 echo ""
 echo ""
-echo -e "\033[33m\033[1m         
-                          _          _            
-          _ __   ___   __| | ___ ___| |_ ___ _ __ 
-         | '_ \ / _ \ / _  |/ _ \ __| __/ _ \ '__|
-         | | | | (_) | (_| |  __\__ \ |_  __/ |   
-         |_| |_|\___/ \__,_|\___|___/\__\___|_|   \033[22m\033[39m
-                                                  
-          \033[1mOpen Source Node.js Hosting Platform.\033[22m
-              http://github.com/nodester"
+echo -e "\033[33m\033[1m
+
+      hh                                                 kkk
+    hh:h                                              kkk::k
+  hh:::h                                             k:::::k
+  h::::h                                             k:::::k
+  h::::h hhhhh         ooooooooooo      ooooooooooo  k:::::k    kkkkkkk
+  h::::hh:::::hhh    oo:::::::::::oo  oo:::::::::::oo  k:::k   k:::::k
+  h::::::::::::::h  o:::::::::::::::oo:::::::::::::::o  k::k  k:::::k
+  h::::::hhhh::::h  o:::::ooooo:::::::o::::ooooo:::::o  k::k k:::::k
+  h:::::h    h:::h  o::::o     oo::::::o::o     o::::o  k:::k:::::k
+  h:::::h     h::h  o::::o     o::o::::::oo     o::::o  k:::kkk::::k
+  h:::::h     h::h  o:::::ooooo::::o:::::::ooooo:::::o  k::k   k::::k
+  h:::::h     h::h  o:::::::::::::::oo:::::::::::::::o  k::k    k::::k
+  h:::::h     h:::h  oo:::::::::::oo  oo:::::::::::oo  k:::k     k::::k
+  hhhhhhh     hhhhhhh  ooooooooooo      ooooooooooo  kkkkkkk      kkkkkk \033[22m\033[39m
+
+                           http://tryhook.com/"
 echo ""
 echo ""
 
@@ -52,16 +62,16 @@ fi
 
 if [ -f ./package.json ]; then
     echo "Updating npm modules..."
-    npm install
+    #npm install
+    /usr/local/bin/npm install
 fi
 
 cd $OLD_PWD
 
 echo "Attempting to restart your app: ${gitdir}"
 curl "http://127.0.0.1:4001/app_restart?repo_id=${gitdir}&restart_key=${SECRETKEY}" 2>/dev/null
-echo ""
 echo "App restarted.."
 echo ""
-echo "  \m/ Nodester out \m/"
+echo "  \m/ Hook out \m/"
 echo ""
 exit 0;
