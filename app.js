@@ -29,16 +29,14 @@ var express = require('express')
 console.error = log.warn.bind(log);
 console.log = log.info.bind(log);
 
-var app = express.createServer();
+var app = express();
 
-app.configure(function () {
-  app.use(express.bodyParser());
-  app.use(express['static'](config.opt.public_html_dir));
-  app.use(express.errorHandler({
-    showStack: true,
-    dumpExceptions: true
-  }));
-});
+app.use(express.bodyParser());
+app.use(express['static'](config.opt.public_html_dir));
+app.use(express.errorHandler({
+  showStack: true,
+  dumpExceptions: true
+}));
 
 /*
  * status emitter
@@ -51,7 +49,7 @@ var dash = process.dash = new EventEmitter();
  * Error handler
 */
 
-app.error(function (err, req, res, next) {
+app.use(function (err, req, res, next) {
   if (err instanceof NotFound) {
     res.sendfile(__dirname + '/public/404.html');
   } else {
@@ -389,5 +387,5 @@ process.log = log;
 
 // default listener
 app.listen(4001, function () {
-  log.info('Nodester app started on port %d', app.address().port);  
+  log.info('Nodester app started on port %d', 4001);
 });
