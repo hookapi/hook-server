@@ -60,6 +60,9 @@ app.use(function (err, req, res, next) {
 });
 
 app.all('*',function(req,res,next){
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
   if (!path.extname(req.url)){
     var ip = req.connection.remoteAddress || req.socket.remoteAddress;
     if (req.headers["x-real-ip"]) ip = req.headers["x-real-ip"];
