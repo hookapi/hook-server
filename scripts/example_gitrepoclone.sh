@@ -41,7 +41,9 @@ if [ -d "${appdir}" ]; then
   echo "Syncing repo with chroot"
   cd ${appdir};
   unset GIT_DIR;
-  git pull;
+  # git pull;
+  git fetch origin
+  git reset --hard origin/master
 else
   echo "Fresh git clone into chroot"
   mkdir -p ${appdir};
