@@ -9,3 +9,4 @@ bin/.nodester.config
 node_modules
 test
 *.un~
+var/proxy_table.json
