@@ -23,8 +23,8 @@ log.info('Starting proxy initialization');
 
 // Set some defaults in case that read process fail.
 var proxymap = {
-  "nodester.com":4001,
-  "api.nodester.com":4001
+  "hookapi.io":4001,
+  "api.hookapi.io":4001
 };
 
 // Avoid DDOS
@@ -32,7 +32,7 @@ var bannedIPs = [];
 
 // Ghetto hack for error page
 var getErrorPage = function (title, code, error) {
-  var errorPage = '<html><head><title id="title">{title}</title></head><body><br/><br/><br/><br/><br/><center><img src="http://nodester.com/images/rocket-down.png" alt="logo" /><br/><h1 style ="color:#000;font-family:Arial,Helvetica,sans-serif;font-size:38px;font-weight:bold;letter-spacing:-2px;padding:0 0 5px;margin:0;">{code}</h1><h3 style ="color:#000;font-family:Arial,Helvetica,sans-serif;font-size:24px;font-weight:bold;padding:0 0 5px;margin:0;">{error}</h3></center></body></html>';
+  var errorPage = '<html><head><title id="title">{title}</title></head><body style="background:#dbdada url(http://hookapi.io/images/bg.png);"><br/><br/><br/><br/><br/><center><img src="http://hookapi.io/images/logo.png" alt="logo" /><br/><h1 style="font-family:Arial,Helvetica,sans-serif;font-size:28px;font-weight:bold;letter-spacing:-2px;padding:0;margin:30px 0 0;color:#aeadad;text-shadow:1px 1px 0 rgba(255,255,255,0.5);">{code}</h1><h3 style="font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:normal;padding:0 0 5px;margin:0;color:#aeadad;text-shadow:1px 1px 0 rgba(255,255,255,0.5);">{error}</h3></center></body></html>';
   return errorPage.replace(/\{title\}/gi, title)
                   .replace(/\{code\}/gi, code)
                   .replace(/\{error\}/gi, error)

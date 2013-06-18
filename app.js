@@ -123,21 +123,9 @@ process.on('uncaughtException', function (err) {
  * 
  */
 
-['','api','help','about'].forEach(function(staticResource){
-  app.get('/' + staticResource, function(req, res){
-    if (!staticResource) staticResource =  'index';
-    res.sendfile(__dirname + '/public/' + staticResource + '.html');
-  });
+app.get('/', function(req, res) {
+  res.redirect('http://tryhook.com');
 });
-
-app.get('/admin', function (req, res, next) {
-  res.redirect('http://admin.nodester.com');
-});
-
-app.get('/irc', function (req, res, next) {
-  res.redirect('http://irc.nodester.com');
-});
-
 
 /*
  * shorthands
@@ -193,6 +181,15 @@ var user = require('./lib/user');
  */
 
 app.post('/user', user.post);
+
+
+/*
+ * Log in 
+ * @Public: false, only with authentication
+ * @raw: curl -X POST -u "testuser:123" -d "password=test&rsakey=1234567" http://localhost:4001/user/login
+ */
+
+app.post('/user/login', auth, user.login);
 
 
 /*
@@ -371,7 +368,8 @@ app.put('/reset_password/:token', reset_password.put);
 
 
 app.get('/*', function (req, res) {
-  throw new NotFound();
+  //throw new NotFound();
+  res.redirect('http://tryhook.com');
 });
 
 function NotFound(msg) {
