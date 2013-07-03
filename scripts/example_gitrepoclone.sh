@@ -51,14 +51,42 @@ else
   cd ${appdir};
 fi
 
-export ASDF="it didn't work"
-
+# Because I hate bash..
 python <<END
-import os
-os.environ['ASDF'] = 'it worked'
-END
 
-echo $ASDF
+import json
+import os
+
+# Add a package.json
+
+outfile = 'package.json'
+
+data = {}
+if os.path.exists(outfile):
+  with open(outfile, "r") as jsonFile:
+    data = json.load(jsonFile)
+
+if not 'repository' in data:
+  data['repository'] = {'type': 'git', 'url': 'http://thisisto.supresswarning.com'}
+
+data['main'] = 'bootstrap.js'
+data['dependencies'] = {'clim': '1.0.0'}
+
+with open(outfile, "w") as jsonFile:
+  jsonFile.write(json.dumps(data))
+
+# Write the README file (to supress warnings)
+
+with open("README.md","w+") as f:
+  f.write('<3')
+
+# Create a base script
+
+with open("bootstrap.js","w+") as f:
+  f.write('require("clim")(console, true);')
+  f.write('require("fs").readdirSync("./includes").forEach(function(file) { require("./includes/" + file); });');
+
+END
 
 hook=./.git/hooks/post-receive
 if [ -f "$hook" ]; then
