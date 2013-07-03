@@ -51,6 +51,15 @@ else
   cd ${appdir};
 fi
 
+export ASDF="it didn't work"
+
+python <<END
+import os
+os.environ['ASDF'] = 'it worked'
+END
+
+echo $ASDF
+
 hook=./.git/hooks/post-receive
 if [ -f "$hook" ]; then
     rm $hook
