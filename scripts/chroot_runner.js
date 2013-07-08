@@ -36,6 +36,7 @@ var log_lines = [];
 //log.error("MYPID: %s", 1234); //myPid);
 (function () {
   var log_listen = function (p, cb) {
+      return;
       fs.unlink(p, function () {
         var srv = net.createServer(function (conn) {
           var logs = JSON.stringify({
