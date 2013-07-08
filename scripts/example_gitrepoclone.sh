@@ -70,7 +70,7 @@ if not 'repository' in data:
   data['repository'] = {'type': 'git', 'url': 'http://thisisto.supresswarning.com'}
 
 data['main'] = 'bootstrap.js'
-data['dependencies'] = {'clim': '1.0.0'}
+data['dependencies'] = {'console-ten': '*'}
 
 with open(outfile, "w") as jsonFile:
   jsonFile.write(json.dumps(data))
@@ -83,7 +83,7 @@ with open("README.md","w+") as f:
 # Create a base script
 
 with open("bootstrap.js","w+") as f:
-  f.write('require("clim")(console, true);')
+  f.write('require("console-ten").init(console);')
   f.write('require("fs").readdirSync(require("path").resolve(__dirname, "includes")).forEach(function(file) { require("./includes/" + file); });');
 
 END
