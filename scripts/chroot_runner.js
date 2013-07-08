@@ -61,14 +61,6 @@ var log_lines = [];
       });
     };
 
-    /* Advanced line logging! */
-    /*
-    var log_line2 = function (type, line) {
-        line = 'WARN [time] :: ' + line;
-        log_line.call(false, line);
-    };
-    */
-
     var log_line = function (line, stdout) {
       log.info('logging line: %s %s', line, stdout);
       if (typeof this == 'string') {
@@ -186,8 +178,8 @@ var log_lines = [];
           log_line.call('data', WARN + ' :: You need to upgrade to 0.6.17 Change the value in your package.json', LOG_STDERR);
         }
         log_line.call('Watcher', 'Running node v-' + version, LOG_STDERR);
-        child.stdout.on('data', log_line.bind(false, 'LOG'));
-        child.stderr.on('data', log_line.bind(false, 'ERROR'));
+        child.stdout.on('data', log_line.bind('stdout'));
+        child.stderr.on('data', log_line.bind('stderr'));
         child.on('exit', function (code) {
             if (code > 0 && run_count > run_max) {
             log_line.call('Watcher', 'Error: Restarted too many times, bailing.', LOG_STDERR);
