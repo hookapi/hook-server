@@ -102,7 +102,7 @@ fi
 if [ -f ./package.json ]; then
     echo "Updating npm modules..."
     #npm install
-    /usr/local/bin/npm install
+    /usr/local/bin/npm install --loglevel silent
 fi
 
 cd $OLD_PWD
