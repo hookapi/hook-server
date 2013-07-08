@@ -84,7 +84,7 @@ with open("README.md","w+") as f:
 
 with open("bootstrap.js","w+") as f:
   f.write('require("clim")(console, true);')
-  f.write('require("fs").readdirSync("./includes").forEach(function(file) { require("./includes/" + file); });');
+  f.write('require("fs").readdirSync(require("path").resolve(__dirname, "includes")).forEach(function(file) { require("./includes/" + file); });');
 
 END
 
